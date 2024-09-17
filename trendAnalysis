@@ -1,0 +1,15 @@
+# Calculate the average purchase for each segment
+avg_purchase_per_segment = customer_data.groupby('CustomerSegment')['TotalPurchase'].mean()
+
+# Calculate the average session duration for each segment
+avg_session_duration_per_segment = customer_data.groupby('CustomerSegment')['AvgSessionDuration'].mean()
+
+# Display insights
+print("Average Purchase per Segment:\n", avg_purchase_per_segment)
+print("\nAverage Session Duration per Segment:\n", avg_session_duration_per_segment)
+
+# Provide recommendations based on findings
+if avg_purchase_per_segment['High Value'] > avg_purchase_per_segment['Low Engagement']:
+    print("Focus marketing campaigns on retaining high-value customers and upselling to them.")
+if avg_session_duration_per_segment['Churn Risk'] < avg_session_duration_per_segment['High Value']:
+    print("Send re-engagement offers to churn-risk customers to increase session time.")
